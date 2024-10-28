@@ -7,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class SearchCep {
-    public Address searchCep(String cep){
+    public Address searchAddress(String cep){
         URI endereco = URI.create("https://viacep.com.br/ws/" + cep + "/json/");
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
