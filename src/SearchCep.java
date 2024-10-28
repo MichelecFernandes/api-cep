@@ -9,19 +9,16 @@ import java.net.http.HttpResponse;
 public class SearchCep {
     public Address searchAddress(String cep){
         URI endereco = URI.create("https://viacep.com.br/ws/" + cep + "/json/");
-        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(endereco)
                 .build();
-        HttpResponse<String> response = null;
         try {
-            response = HttpClient
+            HttpResponse<String> response = HttpClient
                     .newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
+            return new Gson().fromJson(response.body(), Address.class);
+        } catch (Exception e) {
             throw new RuntimeException("Não consegui obter o enedereço a partir desse CEP");
         }
-
-        return new Gson().fromJson(response.body(), Address.class);
     }
 }

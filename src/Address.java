@@ -1,6 +1,6 @@
 public record Address (
-    String logradourado,
     String cep,
+    String logradourado,
     String complemento,
     String localidade,
     String uf){
